@@ -1,0 +1,28 @@
+<div class="title-container">
+    <h2 class="title">{{title}}</h2>
+
+
+</div>
+
+<ng-container *ngIf="movies.length !==0; else louder">
+    <div class="movie-grid-container">
+        <div class="movie-card" *ngFor="let movie of movies">
+            <h3>{{ movie.title }}</h3>
+            <img 
+            [routerLink]="'/movies/' + movie.id"
+            [src]="movie.image" 
+            alt="img"
+            >
+            <p> Description: {{ movie.description }} </p>
+            <p> Director: {{ movie.director }} </p>
+            <p> Release Date: {{ movie.release_date }}</p>
+            <p> Rotten Tomato Score: {{ movie.rt_score }}% </p>
+        </div>
+    </div>
+
+
+</ng-container>
+<ng-template #louder>
+<app-louder></app-louder>
+</ng-template>
+
