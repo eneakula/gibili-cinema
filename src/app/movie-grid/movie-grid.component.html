@@ -1,12 +1,16 @@
 <div class="title-container">
     <h2 class="title">{{title}}</h2>
-
-
+    <input 
+    type="text" 
+    placeholder="Search by title"
+    #searchTerm
+    (input)="getFilteredMovies(searchTerm.value)"
+>
 </div>
 
-<ng-container *ngIf="movies.length !==0; else louder">
+<ng-container *ngIf="filteredMovies.length !==0; else louder">
     <div class="movie-grid-container">
-        <div class="movie-card" *ngFor="let movie of movies">
+        <div class="movie-card" *ngFor="let movie of filteredMovies">
             <h3>{{ movie.title }}</h3>
             <img 
             [routerLink]="'/movies/' + movie.id"

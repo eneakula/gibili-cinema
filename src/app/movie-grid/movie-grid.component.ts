@@ -24,7 +24,9 @@ interface Movie{
 })
 export class MovieGridComponent implements OnInit{
 
-  movies: Movie[]= []
+  movies: Movie[]= [];
+  filteredMovies: Movie[]= [];
+
   title: string=''
 
   constructor(private movieService: MovieService){}
@@ -33,8 +35,18 @@ export class MovieGridComponent implements OnInit{
     this.getMovies();
   }
 
-  getMovies(){
-    this.movieService.getMovies().subscribe((movies: any) => this.movies = movies);
+  getMovies() {
+    this.movieService.getMovies()
+      .subscribe((movies: any) => {
+        this.movies = movies;
+        this.getFilteredMovies('');
+      });
   }
 
+  getFilteredMovies(searchTerm: string) {
+    this.filteredMovies = this.movies.filter(
+      (movies) => movies.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  }
 }
+
