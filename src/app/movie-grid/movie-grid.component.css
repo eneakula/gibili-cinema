@@ -1,3 +1,10 @@
+.title-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
 .movie-grid-container{
     padding: 0 20px;
     display: grid;
